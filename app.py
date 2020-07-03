@@ -30,7 +30,9 @@ events = [
 @app.route('/index')
 
 def index():
-    return render_template('index.html', events = events)
+    letter = "A"
+    categories = ["dogs", "cats", "names", "cities", "countries", "foods"]
+    return render_template('index.html', categories=categories, letter=letter)
 
 
 # CONNECT TO DB, ADD DATA
