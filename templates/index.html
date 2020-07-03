@@ -7,41 +7,51 @@
 	<title>repl.it</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
 		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-	<link href="style.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css') }}?q={{ time }}" />
 </head>
 
 <body>
+    <div class="title text-center">
+        <h1>Scattergories</h1>
+    </div>
 	<section class="container row">
-		<div class="col col-lg-2 container">
-			<div id="letter">
-				<h1>{{ letter }}</h1>
+		<div class="col col-lg-2 container" id="controls">
+            <div class="card text-center control-card">
+                <div id="letter">
+                    <h1>{{ letter }}</h1>
+                </div>
+            </div>
+			<div class="card text-center control-card" id="timer">
+				<h3 class="time">120</h3>
+				<a><button type="button" class="btn btn-outline-success start">Start</button></a>
+				<a><button type="button" class="btn btn-outline-danger stop">Stop</button></a>
 			</div>
-			<div id="timer">
-				<div class="timer">
-					<p class="time">120</p>
-				</div>
-				<button type="button" class="btn btn-outline-success start">Start</button>
-				<button type="button" class="btn btn-outline-danger stop">Stop</button>
-				<button type="button" class="btn btn-outline-primary">Next Round</button>
-			</div>
-		</div>
+            <div class="card text-center control-card">
+                <a href="/index"><button type="button" id="next-round" class="btn">Next Round</button></a>
+            </div>
+        </div>
 
 		<form class="form-group col-lg-7">
-			<div id="catagory" class="row container">
-				{% for i in range(categories|length) %}
-                <div class="col-lg-4">
-				    <p>{{i+1}}. {{ categories[i] }}</p>
-                </div>
-                <div class="col-lg-6">
-					<input type="text" class="form-control" name="catagory1" value={{ letter }}>
-                </div>
-				{% endfor %}
+			<div id="category" class="container">
+                <ul class="list-group  w-100">
+                    {% for i in range(categories|length) %}
+                    <li class="list-group-item container">
+                        <div class="row">
+                        <div class="col">
+                            <p>{{i+1}}. {{ categories[i] }}</p>
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" name="catagory1" value={{ letter }}>
+                        </div>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
             </div>
 		</form>
-		
-
 	</section>
 	<script src="script.js"></script>
+    <script src="{{ url_for('static',filename='js/script.js') }}" />
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
 	</script>

@@ -1,0 +1,42 @@
+body {
+    margin: 20px;
+    color: #1D2757;
+}
+
+h1{
+    color: #48aada;
+}
+
+h3{
+    color: #5cbe7e;
+}
+
+.title {
+    padding: 2%;
+}
+
+#controls {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.control-card{
+    height: 140px;
+    width: 140px;
+    display: flex;
+    justify-content: center;
+}
+
+button{
+    margin: 3px;
+}
+
+#next-round{
+    color: #363d45;
+    background-color: #fcb922;
+}
+
+.form-group{
+    margin-bottom: 0px;
+}

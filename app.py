@@ -3,17 +3,14 @@
 from flask import Flask
 from flask import render_template
 from flask import request
+import lists
+import random
+from datetime import datetime
 # from flask_pymongo import PyMongo
 
 
 # -- Initialization section --
 app = Flask(__name__)
-
-events = [
-        {"event":"First Day of Classes", "date":"2019-08-21"},
-        {"event":"Winter Break", "date":"2019-12-20"},
-        {"event":"Finals Begin", "date":"2019-12-01"}
-    ]
 
 # name of database
 # app.config['MONGO_DBNAME'] = 'database-name'
@@ -30,19 +27,27 @@ events = [
 @app.route('/index')
 
 def index():
-    letter = "A"
-    categories = ["dogs", "cats", "names", "cities", "countries", "foods"]
-    return render_template('index.html', categories=categories, letter=letter)
+    letter = random.choice(lists.letters)
+    cats = random.choices(lists.categories, k=8)
+    return render_template('index.html', categories=cats, letter=letter, time=datetime.now())
 
 
 # CONNECT TO DB, ADD DATA
 
-@app.route('/add')
-
-def add():
+@app.route('/results')
+def results():
     # connect to the database
 
     # insert new data
 
     # return a message to the user
     return ""
+
+
+# TO DO LIST
+# Make it look prettier
+# Show a results pages with the results from other players too
+# Or a "play against the computer" which has answers already
+# Results submitted when timer runs out
+# Show points from the game
+# Make the game more customizable (num of categories, timer length, what letters)
